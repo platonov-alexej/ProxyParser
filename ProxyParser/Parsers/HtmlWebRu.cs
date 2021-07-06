@@ -1,19 +1,16 @@
 ﻿using HtmlAgilityPack;
 using ProxyParser.Models;
-using ProxyParser.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProxyParser.Parser
 {
     class HtmlWebRu : IParser
     {
-        public void Parse()
+        public List<ProxyInDb> Parse()
         {
             WebClient myClient = new WebClient();
             List<ProxyInDb> proxiesToDb = new List<ProxyInDb>();
@@ -59,9 +56,7 @@ namespace ProxyParser.Parser
                     }
                 }
             }
-
-            DbWorker dbWorker = new DbWorker();
-            Console.WriteLine($"{dbWorker.InsertProxyList(proxiesToDb).Result} was added to DB");
+            return proxiesToDb;            
         }
     }
 }

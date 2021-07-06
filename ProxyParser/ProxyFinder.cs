@@ -1,9 +1,8 @@
 ﻿using ProxyParser.Parser;
+using ProxyParser.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ProxyParser
 {
@@ -22,7 +21,9 @@ namespace ProxyParser
 
             foreach(IParser parser in parsers)
             {
-                parser.Parse();
+                var proxies = parser.Parse();
+                DbWorker dbWorker = new DbWorker();
+                Console.WriteLine($"{dbWorker.InsertProxyList(proxies).Result} was added to DB");
             }
         }
     }

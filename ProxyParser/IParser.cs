@@ -1,13 +1,10 @@
-﻿using System;
+﻿using ProxyParser.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProxyParser
 {
     interface IParser
     {
-        void Parse();
+        List<ProxyInDb> Parse();
     }
 }
